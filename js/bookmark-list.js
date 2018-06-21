@@ -133,6 +133,8 @@ function filterBookmarksArrayByRating(bookmarks, rating){
       let newBookmarkData = $(event.target).serializeJson();  
       let convertedObject = JSON.parse(newBookmarkData);
       $('.js-bookmarks-list-entry').val('');
+      $('.js-bookmarks-url-entry').val('');
+      $('.js-bookmarks-description-entry').val('');
       convertedObject.checked=false;
    
       
