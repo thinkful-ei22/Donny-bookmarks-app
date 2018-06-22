@@ -112,9 +112,8 @@ const bookmarksList = (function(){
    </div>
     
        <div class="wrap-collabsible">
-       <span><h3 class="bookmark-title">${bookmark.title}</h3> <button class="bookmarks-bookmark-link js-bookmark-link">
-
-       </button></span>
+       <span><h3 class="bookmark-title"><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></h3> 
+       <a href="${bookmark.url}" target="_blank"><button class="bookmarks-bookmark-link js-bookmark-link"></button></a></span>
        
        
 
@@ -145,6 +144,27 @@ const bookmarksList = (function(){
     </li>`;
   }
   
+
+  const starRatingElement=` <div class="star-rating3">
+  <label for="rating-input-3">Rating</label>
+<span class="rating">
+<input type="radio" class="rating-input"
+ id="rating-input-3-5" name="rating-input-3" value="5">
+<label for="rating-input-3-5" class="rating-star" ></label>
+<input type="radio" class="rating-input"
+ id="rating-input-3-4" name="rating-input-3" value="4">
+<label for="rating-input-3-4" class="rating-star"></label>
+<input type="radio" class="rating-input"
+ id="rating-input-3-3" name="rating-input-3" value="3">
+<label for="rating-input-3-3" class="rating-star"></label>
+<input type="radio" class="rating-input"
+ id="rating-input-3-2" name="rating-input-3" value="2">
+<label for="rating-input-3-2" class="rating-star"></label>
+<input type="radio" class="rating-input"
+ id="rating-input-3-1" name="rating-input-3" value="1">
+<label for="rating-input-3-1" class="rating-star"></label>
+</span>
+</div>`;
   
   function generateBookmarksBookmarkString(bookmarksList) {
     const rating = store.getRatingFilter();
@@ -183,13 +203,22 @@ const bookmarksList = (function(){
     $('.logo-area').html(logoHeader);
 
     // render the bookmarks list in the DOM
+   
 
     if(bookmarks.length < 1 || store.adding===true){
       $('.js-bookmarks-list-options').html(addingFormElement);
+
+  
     } else {
       $('.js-bookmarks-list-options').html(hiddenFormElement);
+     
+     
     }
-  
+
+   
+
+    //$('.filterRatingContainer').html(starRatingElement);
+
     console.log('`render` ran');
     const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
   

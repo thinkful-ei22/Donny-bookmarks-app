@@ -9,6 +9,10 @@ body {
   background-color:#fefefe;
 }
 
+a, a:hover, a:visited, a:active{
+  color:#666;
+}
+
 button, input[type="text"] {
   padding: 5px;
   background-color:transparent;
@@ -367,14 +371,16 @@ input[type='checkbox'] {
 
   float:right;
 }
-
+.hidden{
+  visibility: hidden;
+}
 
 /* STARZ */
 .rating {
   overflow: hidden;
   display: inline-block;
   transform:translateY(2px);
-  opacity:0.7;
+  opacity:0.5;
 
 }
 
