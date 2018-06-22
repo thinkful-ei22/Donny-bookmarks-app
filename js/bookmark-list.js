@@ -145,26 +145,32 @@ const bookmarksList = (function(){
   }
   
 
-  const starRatingElement=` <div class="star-rating3">
+  const starRatingElement = function(){
+    var newRating=store.ratingFilter;
+    console.log('STAR RATING ELEMENT');
+    console.log(newRating);
+    return `   
+   <div class="star-rating3">
   <label for="rating-input-3">Rating</label>
 <span class="rating">
 <input type="radio" class="rating-input"
- id="rating-input-3-5" name="rating-input-3" value="5">
-<label for="rating-input-3-5" class="rating-star" ></label>
+ id="rating-input-3-5" name="rating-input-3" value="5"  ${  newRating === '5' ? 'checked': ''}>
+<label for="rating-input-3-5" class="rating-star"  ></label>
 <input type="radio" class="rating-input"
- id="rating-input-3-4" name="rating-input-3" value="4">
+ id="rating-input-3-4" name="rating-input-3" value="4" ${ newRating === '4' ? 'checked' : '' }>
 <label for="rating-input-3-4" class="rating-star"></label>
 <input type="radio" class="rating-input"
- id="rating-input-3-3" name="rating-input-3" value="3">
+ id="rating-input-3-3" name="rating-input-3" value="3"  ${ newRating === '3' ? 'checked' : '' }>
 <label for="rating-input-3-3" class="rating-star"></label>
 <input type="radio" class="rating-input"
- id="rating-input-3-2" name="rating-input-3" value="2">
+ id="rating-input-3-2" name="rating-input-3" value="2"  ${ newRating === '2' ? 'checked' : '' }>
 <label for="rating-input-3-2" class="rating-star"></label>
 <input type="radio" class="rating-input"
- id="rating-input-3-1" name="rating-input-3" value="1">
+ id="rating-input-3-1" name="rating-input-3" value="1" ${ newRating === '1' ? 'checked' : '' } >
 <label for="rating-input-3-1" class="rating-star"></label>
 </span>
 </div>`;
+  };
   
   function generateBookmarksBookmarkString(bookmarksList) {
     const rating = store.getRatingFilter();
@@ -207,17 +213,20 @@ const bookmarksList = (function(){
 
     if(bookmarks.length < 1 || store.adding===true){
       $('.js-bookmarks-list-options').html(addingFormElement);
+      $('.filterRatingContainer').html('');
 
   
     } else {
       $('.js-bookmarks-list-options').html(hiddenFormElement);
      
+    $('.filterRatingContainer').html(starRatingElement);
      
     }
 
-   
+    
 
-    //$('.filterRatingContainer').html(starRatingElement);
+     
+
 
     console.log('`render` ran');
     const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
@@ -232,6 +241,8 @@ const bookmarksList = (function(){
     
   }
   
+
+
   //getters and setters
 
   function setBookmarkMode(boolean){
