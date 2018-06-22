@@ -124,6 +124,27 @@ form{
 
 }
 
+.trashcan{
+  background-image:url(../assets/trashcan.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border:none;
+  height:45px;
+  width:45px;
+  opacity:0.3;
+
+
+}
+
+
+.increaseOpacity:hover{
+ opacity:0.9;
+ transition: opacity .25s ease-in-out;
+ -moz-transition: opacity .25s ease-in-out;
+ -webkit-transition: opacity .25s ease-in-out;
+}
+
 .cancelAddBookmark{
   background-image:url(../assets/cancel.png);
   background-repeat: no-repeat;
@@ -360,19 +381,34 @@ input[type='checkbox'] {
 }
 
 .collapsible-content .content-inner {
-  background: rgba(250, 224, 66, .2);
-  border-bottom: 1px solid rgba(250, 224, 66, .45);
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  padding: .5rem 1rem;
+ 
 }
 
+.tinyURL{
+  font-size:12px;
+  line-height:30px;
+  font-weight:700;
+}
+
+
+.disable{
+
+}
+
+.disable:hover{
+
+}
 .floatRight{
 
   float:right;
 }
 .hidden{
   visibility: hidden;
+}
+
+/*bookmark controls*/
+.bookmarks-bookmark-controls{
+  text-align:right;
 }
 
 /* STARZ */
@@ -409,11 +445,11 @@ input[type='checkbox'] {
   background: url(../assets/starsheet.png) 0 -16px;
   background-size:100%;
 }
-
-.rating-star:hover {
+/*
+.rating-star:not(.disable):hover {
   background-position: 0 0
 }
-
+*/
 .rating-star {
   position: relative;
   float: right;
@@ -423,26 +459,24 @@ input[type='checkbox'] {
   background: url(../assets/starsheet.png) 0 -16px;
   background-size:100%;
 }
-
-.rating-star:hover,
-.rating-star:hover~.rating-star {
+/* disabled temporarily until edit features are put in
+.rating-star:not(.disable):hover,
+.rating-star:not(.disable):hover~.rating-star {
+  background-position: 0 0
+}
+*/
+.rating-input:checked~.rating-star {
   background-position: 0 0
 }
 
-.rating-input:checked~.rating-star,
-.rating-star:hover,
-.rating-star:hover~.rating-star {
+.rating-input:checked~.rating-star
+ {
   background-position: 0 0
 }
 
-.rating-input:checked~.rating-star,
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover~.rating-star {
-  background-position: 0 0
-}
-
+/*
 .rating-star,
-.rating:hover .rating-star {
+.rating:not(.disable):hover .rating-star {
   position: relative;
   float: right;
   display: block;
@@ -451,5 +485,5 @@ input[type='checkbox'] {
   background: url(../assets/starsheet.png) 0 -16px;
   background-size:100%;
 }
-
+*/
 

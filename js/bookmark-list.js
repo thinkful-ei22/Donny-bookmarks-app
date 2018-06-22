@@ -105,20 +105,20 @@ const bookmarksList = (function(){
       <div class="star-rating">
        
       <span class="rating">
-          <input type="radio" class="rating-input"
-                 class="rating-input-${bookmark.id}-5" name="rating${bookmark.id}" value="5"  ${ parseInt(bookmark.rating) === 5 ? 'checked' : ''}>
+          <input type="radio" class="rating-input disable"
+                 class="rating-input-${bookmark.id}-5 disable" name="rating${bookmark.id}" value="5"  ${ parseInt(bookmark.rating) === 5 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-5" class="rating-star" ></label>
-          <input type="radio" class="rating-input"
-                 class="rating-input-${bookmark.id}-4" name="rating${bookmark.id}" value="4"  ${parseInt(bookmark.rating) === 4 ? 'checked' : ''}>
+          <input type="radio" class="rating-input disable"
+                 class="rating-input-${bookmark.id}-4 disable" name="rating${bookmark.id}" value="4"  ${parseInt(bookmark.rating) === 4 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-4" class="rating-star"></label>
-          <input type="radio" class="rating-input"
-                 class="rating-input-${bookmark.id}-3" name="rating${bookmark.id}" value="3"  ${parseInt(bookmark.rating) === 3 ? 'checked' : ''}>
+          <input type="radio" class="rating-input disable"
+                 class="rating-input-${bookmark.id}-3 disable" name="rating${bookmark.id}" value="3"  ${parseInt(bookmark.rating) === 3 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-3" class="rating-star"></label>
-          <input type="radio" class="rating-input"
-                 class="rating-input-${bookmark.id}-2" name="rating${bookmark.id}" value="2"  ${parseInt(bookmark.rating) === 2 ? 'checked' : ''}>
+          <input type="radio" class="rating-input disable"
+                 class="rating-input-${bookmark.id}-2" name="rating${bookmark.id}" value="2"  ${parseInt(bookmark.rating) === 2 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-2" class="rating-star"></label>
-          <input type="radio" class="rating-input"
-                 class="rating-input-${bookmark.id}-1" name="rating${bookmark.id}" value="1"  ${parseInt(bookmark.rating) === 1 ? 'checked' : ''}>
+          <input type="radio" class="rating-input disable"
+                 class="rating-input-${bookmark.id}-1 disable" name="rating${bookmark.id}" value="1"  ${parseInt(bookmark.rating) === 1 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-1" class="rating-star"></label>
       </span>
    </div>
@@ -134,17 +134,17 @@ const bookmarksList = (function(){
           <label for="collapsible${bookmark.id}" class="lbl-toggle">View More Info</label>
           <div class="collapsible-content">
             <div class="content-inner">
-            <span class="bookmarks-bookmark js-bookmarks-expanded">${bookmark.desc} <p>${bookmark.url} </p></span>
+            <span class="bookmarks-bookmark js-bookmarks-expanded">${bookmark.desc} 
+            <p class="tinyURL">${bookmark.url} </p>
+            </span>
             <div class="bookmarks-bookmark-controls">
-            <span class="bookmarks-bookmark js-bookmarks-bookmark ${bookmark.checked ? 'bookmarks-bookmark__checked' : ''}"><span>${bookmark.title}</span> <span class='edit'><i class="fas fa-edit"></i></span><input class='edit-bookmark-input' type="text" value="${bookmark.name}" /></span>
-            <button class="bookmarks-bookmark-toggle js-bookmark-toggle">
-            <span class="button-label"><i class="far fa-check-square"></i></span>
-            </button>
       
-            <button class="bookmarks-bookmark-delete js-bookmark-delete">
-            <span class="button-label"><i class="fas fa-trash-alt"></i>
+      
+            <button class="bookmarks-bookmark-delete js-bookmark-delete trashcan increaseOpacity">
+            <span class="button-label">
             </span>
             </button>
+
       
            
             </div>
