@@ -3,6 +3,8 @@
 # Fundamentals Final Project
 ## Build a Bookmarks App
 
+Link: https://thinkful-ei22.github.io/Donny-bookmarks-app/
+
 ### Project Overview
 Using everything you've learned over the Fundamentals section of the course, you will build the frontend for an API-powered Bookmarks application that lets the user store and rate their custom web bookmarks.
 
