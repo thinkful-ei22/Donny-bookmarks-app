@@ -4,6 +4,44 @@
 
 const bookmarksList = (function(){
 
+
+  const addingFormElement=
+    `  <form id="js-bookmarks-list-form" class="js-bookmarks-list-form">
+    <label for="bookmarks-list-entry">Title</label>
+    <input type="text" name="title" class="js-bookmarks-list-entry" placeholder="Enter a Title">
+    <label for="bookmarks-url-entry">URL</label>
+    <input type="url" name="url" class="js-bookmarks-url-entry" placeholder="Enter URL">
+    <label for="bookmark-description-entry">Description</label>
+    <textarea id="bookmarks-description-entry" name="desc" class="js-bookmarks-description-entry" placeholder="Enter a short description" maxlength="200"></textarea>
+   
+    <div class="star-rating">
+        <label for="rating-input-1">Rating</label>
+        <span class="rating floatRight">
+            <input type="radio" class="rating-input"
+                   id="rating-input-1-5" name="rating" value="5">
+            <label for="rating-input-1-5" class="rating-star" ></label>
+            <input type="radio" class="rating-input"
+                   id="rating-input-1-4" name="rating" value="4">
+            <label for="rating-input-1-4" class="rating-star"></label>
+            <input type="radio" class="rating-input"
+                   id="rating-input-1-3" name="rating" value="3" checked>
+            <label for="rating-input-1-3" class="rating-star"></label>
+            <input type="radio" class="rating-input"
+                   id="rating-input-1-2" name="rating" value="2">
+            <label for="rating-input-1-2" class="rating-star"></label>
+            <input type="radio" class="rating-input"
+                   id="rating-input-1-1" name="rating" value="1">
+            <label for="rating-input-1-1" class="rating-star"></label>
+        </span>
+     </div>
+   
+    <div class="submitInfo"><button type="submit" class="addBookmark"></i>
+    </button></div>
+  </form>`;
+
+
+  
+
   function generateBookmarkElement(bookmark) {
     let bookmarkTitle = `<span class="bookmarks-bookmark bookmarks-bookmark__checked">${bookmark.name}</span>`;
    
@@ -20,9 +58,6 @@ const bookmarksList = (function(){
     <li class="js-bookmark-index-element" data-bookmark-id="${bookmark.id}">
    
   
-     
-
-
       <div class="star-rating">
        
       <span class="rating">
@@ -113,6 +148,10 @@ function filterBookmarksArrayByRating(bookmarks, rating){
     // }
   
     // render the bookmarks list in the DOM
+    if(bookmarks.length < 1){
+    $('.js-bookmarks-list-options').html(addingFormElement);
+    }
+  
     console.log('`render` ran');
     const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
   
@@ -128,7 +167,7 @@ function filterBookmarksArrayByRating(bookmarks, rating){
   
   
   function handleNewBookmarkSubmit() {
-    $('#js-bookmarks-list-form').submit(function (event) {
+    $('.js-bookmarks-list-options').submit(function (event) {
       event.preventDefault();
       let newBookmarkData = $(event.target).serializeJson();  
       let convertedObject = JSON.parse(newBookmarkData);

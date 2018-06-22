@@ -1,9 +1,9 @@
+/* global store, api, cuid,bookmarksList */
 'use strict';
 // eslint-disable-next-line no-unused-vars
 //our global store object which contains our data
 const store =(function(){
   const bookmarks = [];
-  const checkBox= false;
   let ratingFilter = 1;
   const error=null;
 
@@ -31,9 +31,9 @@ const store =(function(){
 
   const setRatingFilter= function(value){
 
-    store.ratingFilter=value;
+    this.ratingFilter=value;
     console.log(value);
-    console.log(store.ratingFilter);
+    console.log(this.ratingFilter);
 
   };
 
@@ -76,6 +76,7 @@ const store =(function(){
     toggleCheckForBookmark,
     setSearchTerm,
     setErrorMsg,
+    ratingFilter,
     setRatingFilter,
     getRatingFilter
   };
