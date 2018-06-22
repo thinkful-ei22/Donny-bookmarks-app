@@ -10,6 +10,7 @@ const store =(function(){
   //value for rating filter
   let ratingFilter = 1;
   const error=null;
+  const errorMsg='';
   const adding = false;
 
   //data and method for loading in some dummy data for testing purposes, it's alot faster than typing it all in....
@@ -23,7 +24,6 @@ const store =(function(){
 
   const addDummyData= function(){
     let bookmarksProcessed = 0;
-
     dummyDataJSON.forEach((bookmark, index, array) => {
       api.createBookmark(bookmark, () => {
         bookmarksProcessed++;
@@ -31,12 +31,10 @@ const store =(function(){
           refreshPage();
         }
       });
-  
     });
   };
 
   function refreshPage() { location.reload(); }
-
 
   //Delet that 
   const deleteEverything = function(){
@@ -99,15 +97,10 @@ const store =(function(){
     bookmarksList.render();
   }
 
-  //local checked toggle
-  const toggleCheckedFilter = function() {
-    this.hideCheckedBookmarks = !this.hideCheckedBookmarks;
-  };
-
-
   //local set error message
   const setErrorMsg = function(msg){
     this.errorMsg = msg;
+    console.log(this.errorMsg);
   };
 
   return {
@@ -117,7 +110,6 @@ const store =(function(){
     findById,
     findAndDelete,
     findAndUpdate,
-    toggleCheckedFilter,
     toggleCheckForBookmark,
     setErrorMsg,
     ratingFilter,
@@ -125,7 +117,9 @@ const store =(function(){
     getRatingFilter,
     getBookmarksNumber,
     deleteEverything,
-    addDummyData 
+    addDummyData,
+    error,
+    errorMsg
   };
   
 }());

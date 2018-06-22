@@ -12,16 +12,26 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="logo-area"></div>
+  
+  <nav role="menu" id="testingMenu"><span><button id="loadDemo">Load Demo Bookmarks</button><button id="deleteDemo">Delete All Bookmarks</button></span></nav>
+  <!--logo and add bookmark submission form-->
+  <main role="form">
+  <div class="container fadein">
+    <header role="banner"><div class="logo-area"></div></header>
       <div class="js-bookmarks-list-options"></div>
+      <div class="error-box"></div>
   </div> <!--end top container -->
-   <div class="our-bookmark-list max-width-800">
-      <div class="filterRatingContainer"></div>
-    <ul class="bookmarks-list js-bookmarks-list">
-    </ul>
+ </main>
+ <section role="list">
+  <!--bookmark list-->
+   <div class="our-bookmark-list max-width-800 fadein">
+      <div class="filterRatingContainer fadein"></div>
+        <ul class="bookmarks-list js-bookmarks-list fadein"> </ul>
     </div>
+  </section>
 
+
+    <!--scripts-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/api.js"></script>
@@ -30,5 +40,4 @@
   <script type="text/javascript" src="js/index.js"></script>
 
 </body>
-
 </html>

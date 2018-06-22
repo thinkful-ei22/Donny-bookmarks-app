@@ -6,12 +6,10 @@ const api = (function(){
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/donny';
 
   const getBookmarks = function (callback){
-
     $.getJSON(`${BASE_URL}/bookmarks`,callback);
-
-
   };
 
+  //updates bookmark 
   const updateBookmark = function (id,updateData,callback,error) {
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
@@ -22,24 +20,11 @@ const api = (function(){
       success: callback,
       error:error
     });
-
   };
 
+  //creates bookmark
   const createBookmark = function (newBookmarkData,callback,error){
-    console.log(newBookmarkData);
-    //console.log(JSON.parse(newBookmarkData));
-    //temporary bookmark object created from passed arguments
-    //let newBookmark= {
-    //  title,
-    //  url,
-     // desc,
-     // rating
-   // };
-
-    //convert our JS object --> JSON format so the server can parse the data
-    //newBookmark= JSON.stringify(newBookmarkData);
-    
-
+   // console.log(newBookmarkData);
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
@@ -49,13 +34,10 @@ const api = (function(){
       success: callback,
       error:error
     });
-
   };
   
-
-
+  //delet 
   const deleteBookmark = function (id,callback,error){
-
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
       method: 'DELETE',
@@ -68,7 +50,6 @@ const api = (function(){
   };
 
   return{
-
     getBookmarks,
     createBookmark,
     updateBookmark,
