@@ -1,4 +1,4 @@
-<img src="assets/logo.png" width="100" height="100">
+<img src="assets/logo.png" width="200" height="200">
 
 # Fundamentals Final Project
 ## Build a Bookmarks App
