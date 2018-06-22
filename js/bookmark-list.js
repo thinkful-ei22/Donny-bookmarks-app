@@ -281,8 +281,16 @@ const bookmarksList = (function(){
   function handleNewBookmarkSubmit() {
     $('.js-bookmarks-list-options').submit(function (event) {
       event.preventDefault();
-      let newBookmarkData = $(event.target).serializeJson();  
+      let newBookmarkData =null;
+      if(IsSafariBrowser()){
+       newBookmarkData=FormDataNameValuePairs('js-bookmarks-list-form');
+       newBookmarkData= JSON.stringify(newBookmarkData);
+       //console.log(test);
+      }else{
+      newBookmarkData = $(event.target).serializeJson(); 
+      } 
       let convertedObject = JSON.parse(newBookmarkData);
+     // console.log(convertedObject);
       $('.js-bookmarks-list-entry').val('');
       $('.js-bookmarks-url-entry').val('');
       $('.js-bookmarks-description-entry').val('');
@@ -384,6 +392,49 @@ const bookmarksList = (function(){
     }
   });
   
+  function IsSafariBrowser()
+  {
+    let VendorName=window.navigator.vendor;
+    return ((VendorName.indexOf('Apple') > -1) &&
+          (window.navigator.userAgent.indexOf('Safari') > -1));
+  }
+
+
+  //This function replaces the serializeJson function - apparently Safari doesn't support properly the FormData method?
+  //see https://stackoverflow.com/questions/41028769/safari-is-saying-formdata-entries-is-not-a-function for example
+
+  function FormDataNameValuePairs(FormName)
+  {
+    let FormDaytaObject={};
+    let FormElement=$('#'+FormName).get(0);
+
+    if (IsSafariBrowser())
+    {
+      let FormElementCollection=FormElement.elements;
+      //console.log('namedItem='+FormElementCollection.namedItem('KEY'));
+      let JQEle,EleType;
+      for (let ele=0; (ele < FormElementCollection.length); ele++)
+      {
+        JQEle=$(FormElementCollection.item(ele));
+        EleType=JQEle.attr('type');
+
+        // https://github.com/jimmywarting/FormData/blob/master/FormData.js
+        if ((! JQEle.attr('name')) ||
+          (((EleType == 'checkbox') || (EleType == 'radio')) &&
+           (! JQEle.prop('checked'))))
+          continue;
+        FormDaytaObject[JQEle.attr('name')]=JQEle.val();
+      }
+    }
+    else
+    {
+      let FormDayta=new FormData(FormElement);
+      for (var fld of FormDayta.entries())
+        FormDaytaObject[fld[0]]=fld[1];
+    }
+
+    return FormDaytaObject;
+  }
   
   function bindEventListeners() {
     handleNewBookmarkSubmit();
