@@ -36,5 +36,3 @@ As a user:
 
 
 
-
->>>>>>> gh-pages
