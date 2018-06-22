@@ -29,7 +29,7 @@ button:hover {
 
   margin-top:20px;
  height:30px;
-  border-bottom:1px dotted grey;
+
 }
 #bookmarks-list-item {
   width: 250px;
@@ -376,6 +376,12 @@ input[type='checkbox'] {
 }
 
 /* STARZ */
+
+.star-rating3{
+  border-bottom:1px dotted grey;
+}
+
+
 .rating {
   overflow: hidden;
   display: inline-block;

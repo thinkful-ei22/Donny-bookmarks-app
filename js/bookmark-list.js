@@ -4,9 +4,10 @@
 
 const bookmarksList = (function(){
 
-  //Array of messages that displays in header logo section
-  const funMessages=['Have you added Google.com? :)','What are your favorite sites?','Goatse is dead. Long live Goatse.','Add more bookmarks. Now!'];
 
+  //Array of messages that displays in header logo section
+  const funMessages=['Have you added Google.com? :)','What are your favorite sites?','By Normies, for Normies.','Goatse is dead. Long live Goatse.','Add more bookmarks. Now!'];
+  
   //Add messages. Currently Unused but perhaps a later implementation will allow users to submit Fun Messages.
   function addFunMessage(yourMessage){
     funMessages.push(yourMessage);
@@ -16,8 +17,19 @@ const bookmarksList = (function(){
   function getRandomMessage(){
     return funMessages[Math.floor(Math.random() * (funMessages.length))];
   }
+
+  //Method for message display in DOM - display random messages unless passed string
+  function displayMessage(optionalMessage){
+    if(optionalMessage){
+      return optionalMessage;
+    }else{
+      return getRandomMessage();
+    }
+  }
+
+
   //HTML template for logo header section
-  const logoHeader =`<img class="logo" src="assets/logo.png"/><h1> Bookmark</h1> <h4 id="getStarted">${getRandomMessage()} </h4>` ;
+  const logoHeader =`<img class="logo" src="assets/logo.png"/><h1> Bookmark</h1> <h4 id="getStarted">${displayMessage()} </h4>` ;
 
   //HTML template for add form section
   const addingFormElement= function(){   
@@ -151,7 +163,7 @@ const bookmarksList = (function(){
     console.log(newRating);
     return `   
    <div class="star-rating3">
-  <label for="rating-input-3">Rating</label>
+  <label for="rating-input-3">Minimum Rating</label>
 <span class="rating">
 <input type="radio" class="rating-input"
  id="rating-input-3-5" name="rating-input-3" value="5"  ${  newRating === '5' ? 'checked': ''}>
@@ -214,13 +226,17 @@ const bookmarksList = (function(){
     if(bookmarks.length < 1 || store.adding===true){
       $('.js-bookmarks-list-options').html(addingFormElement);
       $('.filterRatingContainer').html('');
-
+      $('.js-bookmarks-list').html('');
   
     } else {
       $('.js-bookmarks-list-options').html(hiddenFormElement);
      
     $('.filterRatingContainer').html(starRatingElement);
-     
+    console.log('`render` ran');
+    const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
+  
+    // insert that HTML into the DOM
+    $('.js-bookmarks-list').html(bookmarksListBookmarkString);
     }
 
     
@@ -228,11 +244,7 @@ const bookmarksList = (function(){
      
 
 
-    console.log('`render` ran');
-    const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
-  
-    // insert that HTML into the DOM
-    $('.js-bookmarks-list').html(bookmarksListBookmarkString);
+
 
     // insert error HTML if error message exists
     if(store.errorMsg){
@@ -305,6 +317,8 @@ const bookmarksList = (function(){
         convertedObject.id= response.id;
         console.log(response.id);
         store.addBookmark(convertedObject);
+        store.adding=false;
+        displayMessage('Thank you for adding a bookmark!');
         //console.log(store.bookmarks);
         render();
       });     
