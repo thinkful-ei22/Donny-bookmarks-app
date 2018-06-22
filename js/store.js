@@ -6,6 +6,7 @@ const store =(function(){
   const bookmarks = [];
   let ratingFilter = 1;
   const error=null;
+  const adding = false;
 
 
   const addBookmark = function(bookmark) {
@@ -68,6 +69,7 @@ const store =(function(){
 
   return {
     bookmarks,
+    adding,
     addBookmark,
     findById,
     findAndDelete,

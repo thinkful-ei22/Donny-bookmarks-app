@@ -1,9 +1,17 @@
-/* global store, api, cuid*/
+/* global store, api, cuid */
 // eslint-disable-next-line no-unused-vars
 'use strict';
 
 const bookmarksList = (function(){
 
+
+
+  const funMessage ='';
+  const funMessages=['Have you added Google.com to your bookmarks? :)','What are your favorite sites?'];
+
+  const logoHeader =`   <img class="logo" src="assets/logo.png"/><h1> Bookmark</h1>
+   
+  <h4 id="getStarted">Get Started! Add your first bookmark.</h4>   `  ;
 
   const addingFormElement=
     `  <form id="js-bookmarks-list-form" class="js-bookmarks-list-form">
@@ -38,6 +46,13 @@ const bookmarksList = (function(){
     <div class="submitInfo"><button type="submit" class="addBookmark"></i>
     </button></div>
   </form>`;
+
+
+  const hiddenFormElement=  `  
+  <div class="submitInfo"><button class="addBookmark" id="addMode"></i>
+  </button></div>
+</form>`;
+
 
 
   
@@ -114,22 +129,22 @@ const bookmarksList = (function(){
   }
   
   
-function generateBookmarksBookmarkString(bookmarksList) {
-   const rating = store.getRatingFilter();
-   console.log(`The rating is ${rating}`);
+  function generateBookmarksBookmarkString(bookmarksList) {
+    const rating = store.getRatingFilter();
+    console.log(`The rating is ${rating}`);
     let filterList = filterBookmarksArrayByRating(bookmarksList,rating);
     const bookmarks = filterList.map((bookmark) => generateBookmarkElement(bookmark));
     return bookmarks.join('');
   }
   
   //filters array given argument, returns filtered array or if no filter argument, returns array
-function filterBookmarksArrayByRating(bookmarks, rating){
-  if(rating > 0){
-    return bookmarks.filter(bookmark => bookmark.rating >= rating);
-  }else{
-    return bookmarks;
+  function filterBookmarksArrayByRating(bookmarks, rating){
+    if(rating > 0){
+      return bookmarks.filter(bookmark => bookmark.rating >= rating);
+    }else{
+      return bookmarks;
+    }
   }
-}
 
   
   function render() {
@@ -146,10 +161,16 @@ function filterBookmarksArrayByRating(bookmarks, rating){
     //if (store.searchTerm) {
     // bookmarks = store.bookmarks.filter(bookmark => bookmark.name.includes(store.searchTerm));
     // }
-  
+    
+    
+    $('.logo-area').html(logoHeader);
+
     // render the bookmarks list in the DOM
-    if(bookmarks.length < 1){
-    $('.js-bookmarks-list-options').html(addingFormElement);
+
+    if(bookmarks.length < 1 || store.adding===true){
+      $('.js-bookmarks-list-options').html(addingFormElement);
+    } else {
+      $('.js-bookmarks-list-options').html(hiddenFormElement);
     }
   
     console.log('`render` ran');
@@ -165,6 +186,39 @@ function filterBookmarksArrayByRating(bookmarks, rating){
     
   }
   
+  //getters and setters
+
+  function setBookmarkMode(boolean){
+    store.adding = boolean;
+    console.log(store.adding);
+
+  }
+
+
+  function getBookmarkMode(){
+    return store.adding;
+  }
+
+  function setFunMessage(yourMessage){
+    this.funMessage = yourMessage;
+    
+  }
+
+  function getFunMessage(yourMessage){
+    return this.funMessage;
+  }
+
+
+  function handleAddModeButtonClick(){
+    $('.js-bookmarks-list-options').on('click', '#addMode',event => {
+    
+    console.log('working! click');
+     bookmarksList.setBookmarkMode(true);
+    render();
+    
+    });
+
+  }
   
   function handleNewBookmarkSubmit() {
     $('.js-bookmarks-list-options').submit(function (event) {
@@ -203,8 +257,8 @@ function filterBookmarksArrayByRating(bookmarks, rating){
       store.toggleCheckForBookmark(id);
       console.log('checked');
      
-      	var pixels = $('a').position();
-      Scroll(700);
+      	//var pixels = $('a').position();
+      //Scroll(700);
 
       //api.updateBookmark(id, newData, function(response){
       //  store.findAndUpdate(id, newData);
@@ -265,15 +319,15 @@ function filterBookmarksArrayByRating(bookmarks, rating){
   const handleRatingFilterClick = function(){
     $('.filterRatingContainer').on('click','.rating-input',event => {
 
-    const inputValue = event.currentTarget.value;
-    console.log(inputValue);
+      const inputValue = event.currentTarget.value;
+      console.log(inputValue);
 
       store.setRatingFilter(inputValue);
       render();
 
     }); 
 
-  }
+  };
 
 
 
@@ -321,12 +375,15 @@ function filterBookmarksArrayByRating(bookmarks, rating){
     handleToggleFilterClick();
     handleBookmarksListSearch();
     handleRatingFilterClick();
+    handleAddModeButtonClick();
     
   }
 
   // This object contains the only exposed methods from this module:
   return {
     render: render,
+    setBookmarkMode,
+    getBookmarkMode,
     bindEventListeners: bindEventListeners,
     
   };
