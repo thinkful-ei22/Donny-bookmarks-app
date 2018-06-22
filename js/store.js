@@ -4,10 +4,22 @@
 //our global store object which contains our data
 const store =(function(){
   const bookmarks = [];
+  const dummyData = [
+
+
+
+
+  ];
   let ratingFilter = 1;
   const error=null;
   const adding = false;
 
+
+  const deleteEverything = function(){
+    this.bookmarks.length=0; 
+    console.log(bookmarks);
+
+  };
 
   const addBookmark = function(bookmark) {
     this.bookmarks.push(bookmark);
@@ -80,7 +92,8 @@ const store =(function(){
     setErrorMsg,
     ratingFilter,
     setRatingFilter,
-    getRatingFilter
+    getRatingFilter,
+    deleteEverything 
   };
   
 }());

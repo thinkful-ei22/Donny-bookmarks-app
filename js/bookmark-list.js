@@ -4,21 +4,39 @@
 
 const bookmarksList = (function(){
 
+  //Array of messages that displays in header logo section
+  const funMessages=['Have you added Google.com? :)','What are your favorite sites?','Goatse is dead. Long live Goatse.','Add more bookmarks. Now!'];
 
+  //Add messages. Currently Unused but perhaps a later implementation will allow users to submit Fun Messages.
+  function addFunMessage(yourMessage){
+    funMessages.push(yourMessage);
+  }
 
-  const funMessage ='';
-  const funMessages=['Have you added Google.com to your bookmarks? :)','What are your favorite sites?'];
+  //Ask a random question, Get a random answer
+  function getRandomMessage(){
+    return funMessages[Math.floor(Math.random() * (funMessages.length))];
+  }
+  //HTML template for logo header section
+  const logoHeader =`<img class="logo" src="assets/logo.png"/><h1> Bookmark</h1> <h4 id="getStarted">${getRandomMessage()} </h4>` ;
 
-  const logoHeader =`   <img class="logo" src="assets/logo.png"/><h1> Bookmark</h1>
-   
-  <h4 id="getStarted">Get Started! Add your first bookmark.</h4>   `  ;
+  //HTML template for add form section
+  const addingFormElement= function(){   
+    let buttonOptions='';
+    if(store.bookmarks.length > 0){
+      buttonOptions = `<div class="submitInfo"><button type="submit" class="addBookmark"><button type="submit" class="cancelAddBookmark">
+      </button></div>`;
+    } else {
+      buttonOptions = `
+      <div class="submitInfo"><button type="submit" class="addBookmark">
+      </button></div>`;
+    }
 
-  const addingFormElement=
-    `  <form id="js-bookmarks-list-form" class="js-bookmarks-list-form">
+    return `
+    <form id="js-bookmarks-list-form" class="js-bookmarks-list-form ">
     <label for="bookmarks-list-entry">Title</label>
-    <input type="text" name="title" class="js-bookmarks-list-entry" placeholder="Enter a Title">
+    <input type="text" name="title" class="js-bookmarks-list-entry" placeholder="Enter a Title" autocomplete="off">
     <label for="bookmarks-url-entry">URL</label>
-    <input type="url" name="url" class="js-bookmarks-url-entry" placeholder="Enter URL">
+    <input type="url" name="url" class="js-bookmarks-url-entry" placeholder="Enter URL" autocomplete="off">
     <label for="bookmark-description-entry">Description</label>
     <textarea id="bookmarks-description-entry" name="desc" class="js-bookmarks-description-entry" placeholder="Enter a short description" maxlength="200"></textarea>
    
@@ -43,15 +61,14 @@ const bookmarksList = (function(){
         </span>
      </div>
    
-    <div class="submitInfo"><button type="submit" class="addBookmark"></i>
-    </button></div>
+    ${buttonOptions}
+
+
   </form>`;
+  };
 
-
-  const hiddenFormElement=  `  
-  <div class="submitInfo"><button class="addBookmark" id="addMode"></i>
-  </button></div>
-</form>`;
+  //HTML template string for when form is hidden - just shows a single button instead ( ; _ ;)
+  const hiddenFormElement=  '<div class="submitInfo"><button class="addBookmark" id="addMode"></i></button></div> </form>';
 
 
 
@@ -212,12 +229,22 @@ const bookmarksList = (function(){
   function handleAddModeButtonClick(){
     $('.js-bookmarks-list-options').on('click', '#addMode',event => {
     
-    console.log('working! click');
-     bookmarksList.setBookmarkMode(true);
-    render();
-    
+      console.log('working! click');
+      bookmarksList.setBookmarkMode(true);
+      render();
+  
     });
 
+  }
+
+  function cancelAddModeButtonClick(){
+    $('.js-bookmarks-list-options').on('click', '.cancelAddBookmark',event => {
+    
+      console.log('working! click');
+      bookmarksList.setBookmarkMode(false);
+      render();
+  
+    });
   }
   
   function handleNewBookmarkSubmit() {
@@ -284,6 +311,12 @@ const bookmarksList = (function(){
     }
   }
   
+
+
+  //HANDLE WITH CARE
+
+
+  //Delete bookmark with this method
   function handleDeleteBookmarkClicked() {
     // like in `handleBookmarkCheckClicked`, we use event delegation
     $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
@@ -302,6 +335,7 @@ const bookmarksList = (function(){
     });
   }
   
+  //Edit bookmark into
   function handleEditBookmarksBookmarkSubmit() {
     $('.js-bookmarks-list').on('submit', '.js-edit-bookmark', event => {
       event.preventDefault();
@@ -376,12 +410,14 @@ const bookmarksList = (function(){
     handleBookmarksListSearch();
     handleRatingFilterClick();
     handleAddModeButtonClick();
+    cancelAddModeButtonClick()
     
   }
 
   // This object contains the only exposed methods from this module:
   return {
     render: render,
+    getRandomMessage,
     setBookmarkMode,
     getBookmarkMode,
     bindEventListeners: bindEventListeners,

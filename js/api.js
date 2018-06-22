@@ -51,6 +51,7 @@ const api = (function(){
     });
 
   };
+  
 
 
   const deleteBookmark = function (id,callback,error){
