@@ -8,6 +8,7 @@ Using everything you've learned over the Fundamentals section of the course, you
 
 ### Implemented
 
+
 As a user:
 * I can add bookmarks to my bookmark list. Bookmarks contain:
   * title
@@ -33,3 +34,4 @@ As a user:
 * (Extension) I can edit the rating and description of a bookmark in my list
 * Implement custom functionality
 * Make UI SeXy
+
