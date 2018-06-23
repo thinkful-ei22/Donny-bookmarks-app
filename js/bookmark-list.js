@@ -39,7 +39,7 @@ const bookmarksList = (function(){
   const addingFormElement= function(){   
     let buttonOptions='';
     if(store.bookmarks.length > 0){
-      buttonOptions = `<div class="submitInfo"><button type="submit" class="addBookmark" title="Add Bookmark"><button type="submit" class="cancelAddBookmark" title="Cancel Adding Bookmark">
+      buttonOptions = `<div class="submitInfo"><button type="submit" class="addBookmark" title="Add Bookmark"><button type="button" class="cancelAddBookmark" title="Cancel Adding Bookmark">
       </button></div>`;
     } else {
       buttonOptions = `
@@ -104,21 +104,27 @@ const bookmarksList = (function(){
       <span class="rating">
       <fieldset name="bookmark-star-rating">
           <legend>Bookmark Star Rating</legend>
-          <input type="radio" class="rating-input disable"
+          
+          <input type="radio" id="rating-input-${bookmark.id}-5"
                  class="rating-input-${bookmark.id}-5 disable" name="rating${bookmark.id}" value="5"  ${ parseInt(bookmark.rating) === 5 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-5" class="rating-star" ></label>
-          <input type="radio" class="rating-input disable"
+          <label for="rating-input-5" class="rating-star no-pointer" ></label>
+          
+          <input type="radio"  id="rating-input-${bookmark.id}-4"
                  class="rating-input-${bookmark.id}-4 disable" name="rating${bookmark.id}" value="4"  ${parseInt(bookmark.rating) === 4 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-4" class="rating-star"></label>
-          <input type="radio" class="rating-input disable"
+          <label for="rating-input-${bookmark.id}-4" class="rating-star no-pointer"></label>
+          
+          <input type="radio"  id="rating-input-${bookmark.id}-3"
                  class="rating-input-${bookmark.id}-3 disable" name="rating${bookmark.id}" value="3"  ${parseInt(bookmark.rating) === 3 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-3" class="rating-star"></label>
-          <input type="radio" class="rating-input disable"
+          <label for="rating-input-${bookmark.id}-3" class="rating-star no-pointer"></label>
+          
+          <input type="radio" id="rating-input-${bookmark.id}-1"
                  class="rating-input-${bookmark.id}-2" name="rating${bookmark.id}" value="2"  ${parseInt(bookmark.rating) === 2 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-2" class="rating-star"></label>
-          <input type="radio" class="rating-input disable"
+          <label for="rating-input-${bookmark.id}-2" class="rating-star no-pointer"></label>
+         
+          <input type="radio" id="rating-input-${bookmark.id}-1"
                  class="rating-input-${bookmark.id}-1 disable" name="rating${bookmark.id}" value="1"  ${parseInt(bookmark.rating) === 1 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-1" class="rating-star"></label>
+          <label for="rating-input-${bookmark.id}-1" class="rating-star no-pointer"></label>
+         
           </fieldset>
       </span>
    </div>
@@ -127,9 +133,6 @@ const bookmarksList = (function(){
        <span><h3 class="bookmark-title"><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></h3> 
        <a href="${bookmark.url}" target="_blank"><button class="bookmarks-bookmark-link js-bookmark-link"></button></a></span>
        
-       
-
-
           <input id="collapsible${bookmark.id}" class="toggle" type="checkbox" ${bookmark.checked ? 'checked' : ''} >
           <label for="collapsible${bookmark.id}" class="lbl-toggle">View More Info</label>
           <div class="collapsible-content">
@@ -138,15 +141,12 @@ const bookmarksList = (function(){
             <p class="tinyURL"><a href="${bookmark.url}" target="_blank">${bookmark.url}</a> </p>
             </span>
             <div class="bookmarks-bookmark-controls">
-      
+
       
             <button class="bookmarks-bookmark-delete js-bookmark-delete trashcan increaseOpacity">
             <span class="button-label">
             </span>
             </button>
-
-      
-           
             </div>
           </div>
         </div>
@@ -216,10 +216,11 @@ const bookmarksList = (function(){
     } else {
       $('.js-bookmarks-list-options').html(hiddenFormElement);
       $('.filterRatingContainer').html(starRatingElement);
-      console.log('`render` ran');
+      //console.log('`render` ran');
       const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
       $('.js-bookmarks-list').html(bookmarksListBookmarkString);
     }
+    $('.our-bookmark-list').prop('hidden', false);
     // insert error message into DOM
     if(store.errorMsg !== '' ){
       $('.error-box').html(`Failure: ${store.errorMsg}`);
