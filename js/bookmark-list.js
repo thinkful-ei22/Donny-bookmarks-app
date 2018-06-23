@@ -39,7 +39,7 @@ const bookmarksList = (function(){
   const addingFormElement= function(){   
     let buttonOptions='';
     if(store.bookmarks.length > 0){
-      buttonOptions = `<div class="submitInfo"><button type="submit" class="addBookmark" title="Add Bookmark"><button type="submit" class="cancelAddBookmark" title="Cancel Adding Bookmark">
+      buttonOptions = `<div class="submitInfo"><button type="submit" class="addBookmark" title="Add Bookmark"><button type="button" class="cancelAddBookmark" title="Cancel Adding Bookmark">
       </button></div>`;
     } else {
       buttonOptions = `
