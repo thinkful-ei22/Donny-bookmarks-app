@@ -109,7 +109,7 @@ const bookmarksList = (function(){
           <label for="rating-input-${bookmark.id}-5" class="rating-star no-pointer" ></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-4 disable" name="rating${bookmark.id}" value="4"  ${parseInt(bookmark.rating) === 4 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-4" class="rating-sta no-pointerr"></label>
+          <label for="rating-input-${bookmark.id}-4" class="rating-star no-pointer"></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-3 disable" name="rating${bookmark.id}" value="3"  ${parseInt(bookmark.rating) === 3 ? 'checked' : ''} disabled>
           <label for="rating-input-${bookmark.id}-3" class="rating-star no-pointer"></label>
@@ -127,9 +127,6 @@ const bookmarksList = (function(){
        <span><h3 class="bookmark-title"><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></h3> 
        <a href="${bookmark.url}" target="_blank"><button class="bookmarks-bookmark-link js-bookmark-link"></button></a></span>
        
-       
-
-
           <input id="collapsible${bookmark.id}" class="toggle" type="checkbox" ${bookmark.checked ? 'checked' : ''} >
           <label for="collapsible${bookmark.id}" class="lbl-toggle">View More Info</label>
           <div class="collapsible-content">
@@ -138,15 +135,12 @@ const bookmarksList = (function(){
             <p class="tinyURL"><a href="${bookmark.url}" target="_blank">${bookmark.url}</a> </p>
             </span>
             <div class="bookmarks-bookmark-controls">
-      
+
       
             <button class="bookmarks-bookmark-delete js-bookmark-delete trashcan increaseOpacity">
             <span class="button-label">
             </span>
             </button>
-
-      
-           
             </div>
           </div>
         </div>
