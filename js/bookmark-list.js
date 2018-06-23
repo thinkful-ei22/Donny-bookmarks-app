@@ -210,7 +210,7 @@ const bookmarksList = (function(){
     } else {
       $('.js-bookmarks-list-options').html(hiddenFormElement);
       $('.filterRatingContainer').html(starRatingElement);
-      console.log('`render` ran');
+      //console.log('`render` ran');
       const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
       $('.js-bookmarks-list').html(bookmarksListBookmarkString);
     }

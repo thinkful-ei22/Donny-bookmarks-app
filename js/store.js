@@ -76,14 +76,14 @@ const store =(function(){
   const setRatingFilter= function(value){
 
     this.ratingFilter=value;
-    console.log(value);
-    console.log(this.ratingFilter);
+    //console.log(value);
+    //console.log(this.ratingFilter);
 
   };
   
   //get global rating filter value
   const getRatingFilter=function(){
-    console.log(`This is the get rating ${this.ratingFilter}`);
+  //  console.log(`This is the get rating ${this.ratingFilter}`);
     return this.ratingFilter;
   };
 
