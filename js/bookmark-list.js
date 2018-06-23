@@ -220,6 +220,7 @@ const bookmarksList = (function(){
       const bookmarksListBookmarkString =  generateBookmarksBookmarkString(bookmarks);
       $('.js-bookmarks-list').html(bookmarksListBookmarkString);
     }
+    $('.our-bookmark-list').prop('hidden', false);
     // insert error message into DOM
     if(store.errorMsg !== '' ){
       $('.error-box').html(`Failure: ${store.errorMsg}`);
