@@ -106,19 +106,19 @@ const bookmarksList = (function(){
           <legend>Bookmark Star Rating</legend>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-5 disable" name="rating${bookmark.id}" value="5"  ${ parseInt(bookmark.rating) === 5 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-5" class="rating-star" ></label>
+          <label for="rating-input-${bookmark.id}-5" class="rating-star no-pointer" ></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-4 disable" name="rating${bookmark.id}" value="4"  ${parseInt(bookmark.rating) === 4 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-4" class="rating-star"></label>
+          <label for="rating-input-${bookmark.id}-4" class="rating-sta no-pointerr"></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-3 disable" name="rating${bookmark.id}" value="3"  ${parseInt(bookmark.rating) === 3 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-3" class="rating-star"></label>
+          <label for="rating-input-${bookmark.id}-3" class="rating-star no-pointer"></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-2" name="rating${bookmark.id}" value="2"  ${parseInt(bookmark.rating) === 2 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-2" class="rating-star"></label>
+          <label for="rating-input-${bookmark.id}-2" class="rating-star no-pointer"></label>
           <input type="radio" class="rating-input disable"
                  class="rating-input-${bookmark.id}-1 disable" name="rating${bookmark.id}" value="1"  ${parseInt(bookmark.rating) === 1 ? 'checked' : ''} disabled>
-          <label for="rating-input-${bookmark.id}-1" class="rating-star"></label>
+          <label for="rating-input-${bookmark.id}-1" class="rating-star no-pointer"></label>
           </fieldset>
       </span>
    </div>

@@ -230,6 +230,10 @@ font-weight:400;
   text-align:center;
 }
 
+
+.no-pointer{
+  cursor: default !important;
+ }
 /*main form fields*/
 
 .js-bookmarks-description-entry{
